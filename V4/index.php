@@ -24,33 +24,38 @@ include 'includes/class-autoload.inc.php';
     </div>
 
 
-//test21232312
+
 
 
 <div class="rechts">
 
   <div class="formular"> <!-- "div" ist einfach nur ein Trenner für einen Abschnitt. Macht Sinn, eine gewisse Struktur reinzubringen. Mit der class="formular" kann im stylesheet genauer darauf zugegriffen werden -->
     <form method="post" action="index.php"> <!-- Das Formular. "POST" ist die sicherste Variante zum Abschicken. Das Formular wird wieder an die gleiche Datei geschickt. Verarbeitung siehe unten! -->
+
+
       <label>060</label>
-			<input id="060" label="060" type="text" name="Form" placeholder="060" /><br>
+			<input id="060" label="060" type="text" name="Inhaltstyp" placeholder="060" /><br>
       <label>061</label>
-      <input id="061" name="Medium" placeholder="061" /><br>
+      <input id="061" name="Medientyp" placeholder="061" /><br>
       <label>062</label>
-			<input id="062" name="Inhalt" placeholder="062" /><br>
+			<input id="062" name="Datentraegertyp" placeholder="062" /><br>
       <label>064</label>
-			<input id="064" name="Inhalt2" placeholder="064" /><br>
+			<input id="064" name="AngabenzumInhalt" placeholder="064" /><br>
       <label>100</label>
-			<input id="100" name="Schoepfer" placeholder="100" /><br>
+			<input id="100" name="GeistigerSchoepfer1" placeholder="100" /><br>
       <label>104</label>
-			<input id="104" name="Schoepfer2" placeholder="104" /><br>
+			<input id="104" name="GeistigerSchoepfer2" placeholder="104" /><br>
       <label>108</label>
-			<input id="titel" name="titel" placeholder="Haupttitel" /><br>
+			<input id="titel" name="GeistigerSchoepfer3" placeholder="108" /><br>
 
 
-			<input id="titel" name="titel" placeholder="Haupttitel" /><br> <!-- Eingabefeld mit Platzhalter für Haupttitel. id="" wird für Stylesheet gesetzt, name="" für Verarbeitung (siehe unten) -->
-      <p id="titelHinweis">"a" sollte nicht im Titel vorkommen!</p>
-      <input id="autor" name="autor" placeholder="Autor" /><br> <!-- Eingabefeld mit Platzhalter für Autor -->
-      <input id="seiten" name="seiten" placeholder="Seitenzahl" /><br> <!-- Eingabefeld mit Platzhalter für Seitenzahl -->
+		<!-- das ist der Code von Luis	<input id="titel" name="titel" placeholder="Haupttitel" /><br> <!-- Eingabefeld mit Platzhalter für Haupttitel. id="" wird für Stylesheet gesetzt, name="" für Verarbeitung (siehe unten) -->
+    <!-- immer noch  <p id="titelHinweis">"a" sollte nicht im Titel vorkommen!</p>
+    <!-- immer noch <input id="autor" name="autor" placeholder="Autor" /><br> <!-- Eingabefeld mit Platzhalter für Autor -->
+    <!--  immer noch <input id="seiten" name="seiten" placeholder="Seitenzahl" /><br> <!-- Eingabefeld mit Platzhalter für Seitenzahl -->
+
+
+
       <input type="submit" value="Prüfen" /> <!-- Button zum Abschicken des Formulars -->
     </form>
   </div>
@@ -61,9 +66,19 @@ include 'includes/class-autoload.inc.php';
 
   <?php
 
+  $Feld60 = htmlspecialchars($_POST["Inhaltstyp"]);
+  $Feld61 = htmlspecialchars($_POST["Medientyp"]);
+  $Feld62 = htmlspecialchars($_POST["Datentraegertyp"]);
+  $Feld64 = htmlspecialchars($_POST["AngabenzumInhalt"]);
+  $Feld100 = htmlspecialchars($_POST["GeistigerSchoepfer1"]);
+  $Feld104 = htmlspecialchars($_POST["GeistigerSchoepfer2"]);
+  $Feld108 = htmlspecialchars($_POST["GeistigerSchoepfer3"]);
+
+
+
   $testObj = new Test();
 //$testObj->getAufnahmenStmt("Descombes, Vincent", "Schwartz, Stephan Adam");
-  $testObj->setAufnahmenStmt("txt", "n", "nc", "", "Baumeister, Bob", "Berben, Iris", "Gantert, Klaus");
+  $testObj->setAufnahmenStmt($Feld60, $Feld61, $Feld62, $Feld64, $Feld100, $Feld104, $Feld108);
 /*
   //Hier kann man PHP-Code schreiben. In diesem Fall verarbeitet der Code das Formular, wenn es abgeschickt wurde.
   //PHP wird im Browser NIE angezeigt. Bevor die Webseite dem Nutzer angezeigt wird, wird PHP-Inhalt ausgeblendet.
