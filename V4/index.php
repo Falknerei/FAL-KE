@@ -66,6 +66,9 @@ include 'includes/class-autoload.inc.php';
 
   <?php
 
+
+  if (isset($_POST["GeistigerSchoepfer3"])) {
+
   $Feld60 = htmlspecialchars($_POST["Inhaltstyp"]);
   $Feld61 = htmlspecialchars($_POST["Medientyp"]);
   $Feld62 = htmlspecialchars($_POST["Datentraegertyp"]);
@@ -79,6 +82,8 @@ include 'includes/class-autoload.inc.php';
   $testObj = new Test();
 //$testObj->getAufnahmenStmt("Descombes, Vincent", "Schwartz, Stephan Adam");
   $testObj->setAufnahmenStmt($Feld60, $Feld61, $Feld62, $Feld64, $Feld100, $Feld104, $Feld108);
+
+}
 /*
   //Hier kann man PHP-Code schreiben. In diesem Fall verarbeitet der Code das Formular, wenn es abgeschickt wurde.
   //PHP wird im Browser NIE angezeigt. Bevor die Webseite dem Nutzer angezeigt wird, wird PHP-Inhalt ausgeblendet.
