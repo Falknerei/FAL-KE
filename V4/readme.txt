@@ -5,3 +5,5 @@ Also sowas wie:
 3) localhost/phpmyadmin in den Browser eingeben und die Datenbank aus dem mysql-Ordner importieren.
 4) die Adresse localhost aufrufen und das Programm testen
 
+und noch ne Änderung
+
