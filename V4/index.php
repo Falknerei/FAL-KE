@@ -42,7 +42,7 @@ include 'includes/class-autoload.inc.php';
       <label>064</label>
 			<input id="064" name="AngabenzumInhalt" placeholder="064" /><br>
       <label>100</label>
-			<input id="100" name="GeistigerSchoepfer1" placeholder="100" /><br>
+			<input id="100" name="GeistigerSchoepfer1" placeholder="10000" /><br>
       <label>104</label>
 			<input id="104" name="GeistigerSchoepfer2" placeholder="104" /><br>
       <label>108</label>
@@ -65,9 +65,56 @@ include 'includes/class-autoload.inc.php';
 
 
   <?php
+  echo '<div class="rechts">'; //dies dient erstmal nur dazu, dass die Felder nicht alle in der Mitte des Bildschirms auftauchen -> muss noch verbessert werden
 
+  $xmlFile = 'example.xml';   //lädt das xml-File
+      $xml = simplexml_load_file($xmlFile);
+
+$Felder = array();
+$Unterfelder = array();
+$InhaltderFelder = array();
+
+ foreach ( $xml->datafield as $data )   //diese Schleife geht das xml durch und lädt den Inhalt in 3 Arrays: Felder, Unterfelder und Inhalt
+          {
+            foreach ( $data->subfield as $data2 )
+              {
+
+                array_push($Felder,$data['tag']);
+                array_push($Unterfelder,$data2['code']);
+                array_push($InhaltderFelder,$data2);
+
+              }
+          }
+
+$anzahlfelder = count ($Felder);
+for ($x = 0; $x < $anzahlfelder; $x++)
+{
+    echo "Feld: "."$Felder[$x]";
+    echo " Unterfeld: "."$Unterfelder[$x]";
+    echo " Inhalt: "."$InhaltderFelder[$x]";
+    echo "<br>";
+    if ($Felder[$x].$Unterfelder[$x] == '100a')
+     { $Feld100 = $InhaltderFelder[$x]; }
+
+    else {}
+
+
+}
+
+echo $Feld100;
+echo  '</div>';
+
+
+
+
+
+
+?>
+
+<?php
 
   if (isset($_POST["GeistigerSchoepfer3"])) {
+
 
   $Feld60 = htmlspecialchars($_POST["Inhaltstyp"]);
   $Feld61 = htmlspecialchars($_POST["Medientyp"]);
@@ -76,7 +123,6 @@ include 'includes/class-autoload.inc.php';
   $Feld100 = htmlspecialchars($_POST["GeistigerSchoepfer1"]);
   $Feld104 = htmlspecialchars($_POST["GeistigerSchoepfer2"]);
   $Feld108 = htmlspecialchars($_POST["GeistigerSchoepfer3"]);
-
 
 
   $testObj = new Test();
