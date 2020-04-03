@@ -5,6 +5,8 @@ include 'includes/class-autoload.inc.php';
 <!DOCTYPE html> <!-- Zeigt Browser/Texteditor, dass es sich um html handelt -->
 
 <html> <!-- Der "Root-Tag" umschließt das gesamte Dokument, sollte aus formalen Gründen da sein -->
+
+
 <head> <!-- Der "Head" gibt Metadaten zur Webseite an -->
   <title>FAL:KE</title> <!-- Der "Titel" des Dokuments. Wird im Browsertab und in ggf. in Google-Ergebnissen angezeigt -->
   <link href="src/css/style.css" rel="stylesheet" type="text/css"> <!-- Die Verknüpfung zu eurem "Stylesheet", wo ihr das Design festlegt -->
@@ -20,38 +22,48 @@ include 'includes/class-autoload.inc.php';
 
 	<div class="links">
 
-	<div> <img src="src/img/RDA_2_Institutions.png" alt="RDA_2_Institutions.png" title="RDA_2_Institutions" width="500" height="676"></img><br /><br /></div>
-    </div>
+    <form action="upload.php" method="post" enctype="multipart/form-data">
+    Bild zum Hochladen auswählen:(Im Moment muss sie noch import.png heißen)
+    <input type="file" name="fileToUpload" id="fileToUpload">
+    <input type="submit" value="Bild hochladen" name="submit">
+    </form>
 
 
-//test21232312
+    <form action="upload2.php" method="post" enctype="multipart/form-data">
+    MarcXml-Datei auswählen: (Im Moment muss sie noch example2.mrcx heißen )
+    <input type="file" name="fileToUpload" id="fileToUpload">
+    <input type="submit" value="MarcXML-Upload" name="submit2">
+    </form>
+
+
+
+
+
+
+
+
+
+
 
 
 <div class="rechts">
 
   <div class="formular"> <!-- "div" ist einfach nur ein Trenner für einen Abschnitt. Macht Sinn, eine gewisse Struktur reinzubringen. Mit der class="formular" kann im stylesheet genauer darauf zugegriffen werden -->
     <form method="post" action="index.php"> <!-- Das Formular. "POST" ist die sicherste Variante zum Abschicken. Das Formular wird wieder an die gleiche Datei geschickt. Verarbeitung siehe unten! -->
-      <label>060</label>
-			<input id="060" label="060" type="text" name="Form" placeholder="060" /><br>
-      <label>061</label>
-      <input id="061" name="Medium" placeholder="061" /><br>
-      <label>062</label>
-			<input id="062" name="Inhalt" placeholder="062" /><br>
-      <label>064</label>
-			<input id="064" name="Inhalt2" placeholder="064" /><br>
-      <label>100</label>
-			<input id="100" name="Schoepfer" placeholder="100" /><br>
-      <label>104</label>
-			<input id="104" name="Schoepfer2" placeholder="104" /><br>
-      <label>108</label>
-			<input id="titel" name="titel" placeholder="Haupttitel" /><br>
+
+    <form action="index.php" method="post">
 
 
-			<input id="titel" name="titel" placeholder="Haupttitel" /><br> <!-- Eingabefeld mit Platzhalter für Haupttitel. id="" wird für Stylesheet gesetzt, name="" für Verarbeitung (siehe unten) -->
-      <p id="titelHinweis">"a" sollte nicht im Titel vorkommen!</p>
-      <input id="autor" name="autor" placeholder="Autor" /><br> <!-- Eingabefeld mit Platzhalter für Autor -->
-      <input id="seiten" name="seiten" placeholder="Seitenzahl" /><br> <!-- Eingabefeld mit Platzhalter für Seitenzahl -->
-      <input type="submit" value="Prüfen" /> <!-- Button zum Abschicken des Formulars -->
+
+
+
+		<!-- das ist der Code von Luis	<input id="titel" name="titel" placeholder="Haupttitel" /><br> <!-- Eingabefeld mit Platzhalter für Haupttitel. id="" wird für Stylesheet gesetzt, name="" für Verarbeitung (siehe unten) -->
+    <!-- immer noch  <p id="titelHinweis">"a" sollte nicht im Titel vorkommen!</p>
+    <!-- immer noch <input id="autor" name="autor" placeholder="Autor" /><br> <!-- Eingabefeld mit Platzhalter für Autor -->
+    <!--  immer noch <input id="seiten" name="seiten" placeholder="Seitenzahl" /><br> <!-- Eingabefeld mit Platzhalter für Seitenzahl -->
+
+      <input name="Import" value="Nein"/>
+
     </form>
   </div>
 
@@ -59,11 +71,52 @@ include 'includes/class-autoload.inc.php';
 
 
 
-  <?php
+<?php
+
+$import = "";
+
+if (isset($_POST["Import"]))
+{
+  $import = $_POST["Import"];
+  echo "<div> <img src=\"uploads/import.png\" alt=\"RDA_2_Institutions.png\" title=\"RDA_2_Institutions\" width=\"500\" height=\"676\"></img><br /><br /></div>";
+  echo "  </div>";
+}
+
+if ("Ja" == ($import))
+{
+  $testImport = new Import();
+  $testImport->loadFile ();
+}
+
+else {
+  echo "Hier \"Ja\" eintippen um den Import zu starten";
+}
+
+?>
+
+
+
+
+
+<?php
+
+  if (isset($_POST["GeistigerSchoepfer3"])) {
+
+
+  $Feld60 = htmlspecialchars($_POST["Inhaltstyp"]);
+  $Feld61 = htmlspecialchars($_POST["Medientyp"]);
+  $Feld62 = htmlspecialchars($_POST["Datentraegertyp"]);
+  $Feld64 = htmlspecialchars($_POST["AngabenzumInhalt"]);
+  $Feld100 = htmlspecialchars($_POST["GeistigerSchoepfer1"]);
+  $Feld104 = htmlspecialchars($_POST["GeistigerSchoepfer2"]);
+  $Feld108 = htmlspecialchars($_POST["GeistigerSchoepfer3"]);
+
 
   $testObj = new Test();
 //$testObj->getAufnahmenStmt("Descombes, Vincent", "Schwartz, Stephan Adam");
-  $testObj->setAufnahmenStmt("txt", "n", "nc", "", "Baumeister, Bob", "Berben, Iris", "Gantert, Klaus");
+  $testObj->setAufnahmenStmt($Feld60, $Feld61, $Feld62, $Feld64, $Feld100, $Feld104, $Feld108);
+
+  }
 /*
   //Hier kann man PHP-Code schreiben. In diesem Fall verarbeitet der Code das Formular, wenn es abgeschickt wurde.
   //PHP wird im Browser NIE angezeigt. Bevor die Webseite dem Nutzer angezeigt wird, wird PHP-Inhalt ausgeblendet.
