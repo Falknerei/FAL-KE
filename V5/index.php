@@ -22,8 +22,25 @@ include 'includes/class-autoload.inc.php';
 
 	<div class="links">
 
-	<div> <img src="src/img/RDA_2_Institutions.png" alt="RDA_2_Institutions.png" title="RDA_2_Institutions" width="500" height="676"></img><br /><br /></div>
-    </div>
+    <form action="upload.php" method="post" enctype="multipart/form-data">
+    Bild zum Hochladen auswählen:(Im Moment muss sie noch import.png heißen)
+    <input type="file" name="fileToUpload" id="fileToUpload">
+    <input type="submit" value="Bild hochladen" name="submit">
+    </form>
+
+
+    <form action="upload2.php" method="post" enctype="multipart/form-data">
+    MarcXml-Datei auswählen: (Im Moment muss sie noch example2.mrcx heißen )
+    <input type="file" name="fileToUpload" id="fileToUpload">
+    <input type="submit" value="MarcXML-Upload" name="submit2">
+    </form>
+
+
+
+
+
+
+
 
 
 
@@ -61,6 +78,8 @@ $import = "";
 if (isset($_POST["Import"]))
 {
   $import = $_POST["Import"];
+  echo "<div> <img src=\"uploads/import.png\" alt=\"RDA_2_Institutions.png\" title=\"RDA_2_Institutions\" width=\"500\" height=\"676\"></img><br /><br /></div>";
+  echo "  </div>";
 }
 
 if ("Ja" == ($import))
@@ -70,7 +89,7 @@ if ("Ja" == ($import))
 }
 
 else {
-  echo "Import Passwort";
+  echo "Hier \"Ja\" eintippen um den Import zu starten";
 }
 
 ?>
