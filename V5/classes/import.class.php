@@ -21,7 +21,7 @@ class Import {
         $Unterfelder = array();
         $InhaltderFelder = array();
 
-        $xmlFile = '/uploads/marcxml/example2.mrcx';   //lädt das xml-File
+        $xmlFile = 'uploads/marcxml/example2.mrcx';   //lädt das xml-File
         $xml = simplexml_load_file($xmlFile);
 
 
@@ -72,8 +72,8 @@ class Import {
 
 
 
-        echo " <div class=\"rechts\">";     /*Ist noch nicht so elegant aber naja */
-        echo "   <div class=\"formular\"> ";
+        echo "<div class=\"rechts\">";     /*Ist noch nicht so elegant aber naja */
+        echo "<div class=\"formular\"> ";
         echo "     <form method=\"post\" action=\"index.php\"> ";
 
         echo " <label>060</label>";
