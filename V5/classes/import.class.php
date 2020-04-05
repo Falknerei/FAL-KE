@@ -3,7 +3,7 @@
 
 class Import {
 
-   
+
 
 
     public function loadFile () {
@@ -21,7 +21,7 @@ class Import {
         $Unterfelder = array();
         $InhaltderFelder = array();
 
-        $xmlFile = 'example.xml';   //lädt das xml-File
+        $xmlFile = '/uploads/marcxml/example2.mrcx';   //lädt das xml-File
         $xml = simplexml_load_file($xmlFile);
 
 
@@ -36,10 +36,10 @@ class Import {
 
                 }
             }
-    
 
-      
-    
+
+
+
         $anzahlfelder = count ($Felder);
         for ($x = 0; $x < $anzahlfelder; $x++)
         {
@@ -68,9 +68,9 @@ class Import {
 
 
         }
-    
 
-      
+
+
 
         echo " <div class=\"rechts\">";     /*Ist noch nicht so elegant aber naja */
         echo "   <div class=\"formular\"> ";
