@@ -21,7 +21,7 @@ class Import {
         $Unterfelder = array();
         $InhaltderFelder = array();
 
-        $xmlFile = 'uploads/marcxml/example2.mrcx';   //lädt das xml-File
+        $xmlFile = '../uploads/marcxml/example2.mrcx';   //lädt das xml-File
         $xml = simplexml_load_file($xmlFile);
 
 
@@ -74,14 +74,14 @@ class Import {
 
         echo "<div class=\"rechts\">";     /*Ist noch nicht so elegant aber naja */
         echo "<div class=\"formular\"> ";
-        echo "     <form method=\"post\" action=\"index.php\"> ";
+        echo "     <form method=\"post\" action=\"aufnahme.php\"> ";
 
         echo " <label>060</label>";
         echo "	<input id=\"060\" name=\"Inhaltstyp\" value='".htmlspecialchars($Feld60)."'><br>";
         echo " <label>061</label>";
         echo "	<input id=\"061\" name=\"Medientyp\" value='".htmlspecialchars($Feld61)."'><br>";
         echo " <label>062</label>";
-        echo "	<input id=\"062 name=\"Datentraegertyp\" value='".htmlspecialchars($Feld62)."'><br>";
+        echo "	<input id=\"062\" name=\"Datentraegertyp\" value='".htmlspecialchars($Feld62)."'><br>";
         echo " <label>064</label>";
         echo "	<input id=\"064\" name=\"AngabenzumInhalt\" value='".htmlspecialchars($Feld64)."'><br>";
         echo " <label>100</label>";
