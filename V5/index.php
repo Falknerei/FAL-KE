@@ -10,7 +10,7 @@ include 'includes/class-autoload.inc.php';
 ?>
 
 
-//erstmal ein einfacher login ohne Datenbank:
+<!--//erstmal ein einfacher login ohne Datenbank: -->
 
 <?php
 // Erlaubter Benutzername und Passwort
@@ -26,19 +26,12 @@ if (isset($_POST['btnlogin'])) {
         && isset($_POST['password']) && $_POST['password'] == $pass) {
         $_SESSION['eingeloggt'] = true;
 
-
-
-
-
     }
 } else if (isset($_POST['btnlogout'])) {
     // Ausloggen
     unset($_SESSION['eingeloggt']);
 }
 ?>
-
-
-
 
 
 
@@ -71,7 +64,9 @@ if (!$_SESSION['eingeloggt']) {
     <br/>
     <br/>
     <a href="php/aufnahme.php">Ohne Registrierung gleich weiter zur Aufnahme</a>
-
+    <br/>
+    <br/>
+    <a href="https://rathausturm-wanderfalken.de">Ist mir alles ziemlich egal - ich will Falken sehen</a>
     </div>
     <?php
 } else {
@@ -79,12 +74,18 @@ if (!$_SESSION['eingeloggt']) {
 
 
     ?>
+    <div class="container">
 
+      <img src="src/img/minifalcon.png" class="icon" width=100 height =100>
+      <h1>Du bist eingeloggt!</h1>
       <form name="logout_mit_php" method="post">
       <input type="submit" name="btnlogout" value="Ausloggen">
       <br/>
+      <br/>
       <a href="php/aufnahme.php">Ich will aufnehmen!</a>
-
+      <br/>
+      <a href="php/uebung.php">Ich will üben!</a>
+    </div>
     </form>
 
 
